@@ -27,3 +27,13 @@ exports.displayBooks = (req, res) => {
         return res.send(arr)
     })
 }
+
+exports.deleteBook = (req, res) => {
+
+    db.query('DELETE FROM usersbooks WHERE Email = ? and Isbn = ?', [req.body.Email, req.body.Isbn] , (err, result) => {
+        if(err) throw err
+
+        return res.send(result)
+    })
+
+}

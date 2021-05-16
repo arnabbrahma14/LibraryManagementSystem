@@ -41,31 +41,44 @@ function Signup(){
     var getRPassword = (e) => {setRPassword(e.target.value)}
 
     var addUser = () => {
-
+        var flag = true
         axios({
             method : 'post',
-            url : 'http://localhost:5000/api/borrow',
-            data: {Email: REmail, Isbn: 'Isbn000'}
+            url: 'http://localhost:5000/api/registered',
+            data: {Email: REmail}
         })
-        .catch( err => console.log(err))
-        .then( response => console.log(response))
+        .catch(err =>  console.log(err))
+        .then( response => flag = response)
 
+        if(flag) alert('User Already Exsist')
 
-        axios({
-            method: 'post',
-            url: 'http://localhost:5000/api/signup', 
-            data: {Name: RName, Email: REmail, Password: RPassword}})
-            .catch( err => console.log(err) )
-            .then( response => {
-                alert(response.data)
-                if(response.data === 'User Registered') {
-                    history.push("/books")
-                    localStorage.setItem('Email', REmail)
-                }
-
-                else history.push("/signin")
-                
+        else 
+        {
+            axios({
+                method : 'post',
+                url : 'http://localhost:5000/api/borrow',
+                data: {Email: REmail, Isbn: 'Isbn000'}
             })
+            .catch( err => console.log(err))
+            .then( response => console.log(response))
+
+
+            axios({
+                method: 'post',
+                url: 'http://localhost:5000/api/signup', 
+                data: {Name: RName, Email: REmail, Password: RPassword}})
+                .catch( err => console.log(err) )
+                .then( response => {
+                    alert(response.data)
+                    if(response.data === 'User Registered') {
+                        history.push("/books")
+                        localStorage.setItem('Email', REmail)
+                    }
+
+                    else history.push("/signin")
+                    
+                })
+        }
         
     }
 

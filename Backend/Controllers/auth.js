@@ -69,3 +69,10 @@ exports.signin = (req, res) => {
     })
 }
 
+exports.registered = (req, res) => {
+    db.query('Select * from users where email = ?', req.body.Email, (err, result) => {
+        if(err) throw err
+
+       return res.send(result.length > 0)
+    })
+}

@@ -11,7 +11,7 @@ export default function CardComp(props) {
               <Card.Text style = {font}>
                   {props.Total}
               </Card.Text>
-                  <Button onClick = {props.Fun}  style = {font}>Borrow</Button>
+                  <Button onClick = {props.Fun}  style = {font}>{props.message}</Button>
               </Card.Body>
          </Card>  
     </>

@@ -5,7 +5,8 @@ import Home from './Pages/Home'
 import PNF from './Pages/PageNotFound'
 import Users from './Pages/Users'
 import Books from './Pages/Books'
-import Items from './Pages/Items'
+import BooksList from './Pages/BooksList'
+import UsersBooksList from './Pages/UsersBooksList'
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
         <Route path = "/signup" exact component = {Signup} />
         <Route path = "/users" exact component = {Users} />
         <Route path = "/books" exact component = {Books} />
-        <Route path = "/items" exact component = {Items} />
+        <Route path = "/booksList" exact component = {BooksList} />
+        <Route path = "/UsersBooksList" exact component = {UsersBooksList} />
         <Route path = "*" component = {PNF} />
       </Switch>
     </Router>

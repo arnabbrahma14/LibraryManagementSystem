@@ -5,7 +5,7 @@ import NavbarComp from '../Components/NavbarComp'
 import {useHistory} from 'react-router-dom'
 const axios = require('axios')
 
-export default function Items(props) {
+export default function BooksList(props) {
 
     var [user, setUser] = useState('')
     let history = useHistory()
@@ -20,19 +20,20 @@ export default function Items(props) {
       }
     }, []);
     
-    var addBooks = (ele) => {
+    var addBooks = (isbn) => {
         axios({
           method: 'post',
           url: 'http://localhost:5000/api/borrow',
-          data: {Email: user, Isbn: ele}
+          data: {Email: user, Isbn: isbn}
         })
         .catch(err => console.log(err))
         .then( (response) => {
-          alert(response.data)
+          // alert(response.data)
+          // window.location.reload()
           history.push("/books")
-          window.location.reload()
         })
       }
+    console.log(props)
     return  <>
     <NavbarComp />
     <div>{props.location.state.map(ele => (
@@ -41,7 +42,7 @@ export default function Items(props) {
         <Container>
           <Row>
             <Col md ={6} className = "m-3">
-              <CardComp Name = {ele.Name} Author = {ele.Author} Total = {ele.Total} Fun = {() => addBooks(ele.Isbn)}/>
+              <CardComp Name = {ele.Name} Author = {ele.Author} Total = {ele.Total} Fun = {() => addBooks(ele.Isbn, props.location.state)} message = {'Borrow'}/>
             </Col>
           </Row>
         </Container>
