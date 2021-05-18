@@ -28,9 +28,10 @@ export default function BooksList(props) {
         })
         .catch(err => console.log(err))
         .then( (response) => {
+          alert('Book Added')
           // alert(response.data)
           // window.location.reload()
-          history.push("/books")
+          history.push("/")
         })
       }
     console.log(props)

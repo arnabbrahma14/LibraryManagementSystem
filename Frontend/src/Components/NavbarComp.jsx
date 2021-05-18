@@ -11,6 +11,7 @@ export default function NavbarComp () {
     const font =  "'Quicksand', sans-serif";
 
     var [user, setUser] = useState('')
+    // var [depts, setDepts] = useState([])
 
     //Getting the Current User that has logged in
     useEffect(() => {
@@ -42,6 +43,21 @@ export default function NavbarComp () {
         })
     
       }
+
+      var getDept = ()  => {
+        axios({
+          method: 'get',
+          url: 'http://localhost:5000/api/depts',
+        })
+        .catch(err => console.log(err))
+        .then( response => {
+          console.log(response.data)
+          // for(const ele of response.data)  {console.log(ele.Name)}
+          //  return <DeptButton Name = {ele.Name} />}
+          // setDepts(response.data)
+          history.push("/books", response.data)
+        })
+      }
     
     return (
             <>
@@ -49,8 +65,8 @@ export default function NavbarComp () {
                 <Container >
                     <Navbar.Brand  onClick = {() => (history.push("/"))} style = {{fontFamily: font}} href="/">Library Management System</Navbar.Brand>
                     <Nav>
-                        <Nav.Link onClick = {() => (history.push("/users"))} style = {{fontFamily: font}} >Users</Nav.Link>
-                        <Nav.Link onClick = {() => (history.push("/books"))} style = {{fontFamily: font}} >Books</Nav.Link>
+                        <Nav.Link onClick = {() => (history.push("/admin"))} style = {{fontFamily: font}} >Admin</Nav.Link>
+                        <Nav.Link onClick = {getDept} style = {{fontFamily: font}} >Books</Nav.Link>
                         <Nav.Link href="/About" style = {{fontFamily: font}}>About</Nav.Link>
                         <Nav.Link href="/Contact" style = {{fontFamily: font}}>Contact</Nav.Link>
 

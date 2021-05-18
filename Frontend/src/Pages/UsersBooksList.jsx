@@ -28,9 +28,10 @@ export default function UsersBooksList(props) {
         })
         .catch(err => console.log(err))
         .then(response => {
+          alert('Book Removed')
           console.log(response)
         //   window.location.reload()
-          history.push("/books")
+          history.push("/")
         })
       }
 

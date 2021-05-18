@@ -21,7 +21,7 @@ exports.displayBooks = (req, res) => {
         if(err) throw err
         
         for(const ele of result) {
-            arr.push( {Name : ele.Name, Author : ele.Author , Isbn: ele.Isbn})
+            arr.push( {Name : ele.Name, Author : ele.Author , Isbn: ele.Isbn, Total: 'Date'})
         }
         console.log(arr)
         return res.send(arr)

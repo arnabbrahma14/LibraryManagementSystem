@@ -5,6 +5,7 @@ const cors = require('cors')
 const authRoutes = require('./Routes/auth')
 const booksRoutes = require('./Routes/books')
 const usersBooksRoutes = require('./Routes/usersBooks')
+const adminRoutes = require('./Routes/admin')
 const PORT = 5000
 
    
@@ -19,6 +20,7 @@ app.use(cors())
 app.use('/api', authRoutes)
 app.use('/api', booksRoutes)
 app.use('/api', usersBooksRoutes)
+app.use('/api', adminRoutes)
 
 // Startig a server
 app.listen(PORT, ()=>(console.log(`App is Running at Port ${PORT}`)))

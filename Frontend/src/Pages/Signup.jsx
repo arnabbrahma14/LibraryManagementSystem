@@ -13,6 +13,8 @@ const font =  "'Quicksand', sans-serif";
 
 function Signup(){
     let history = useHistory()
+    const [flag, setFlag] = useState(false)
+
 
     var register = () => {
         var x= document.getElementById("login");
@@ -40,29 +42,25 @@ function Signup(){
     var getREmail = (e) => {setREmail(e.target.value)}
     var getRPassword = (e) => {setRPassword(e.target.value)}
 
+    
+        
+    
     var addUser = () => {
-        var flag = true
+       
+
         axios({
             method : 'post',
             url: 'http://localhost:5000/api/registered',
             data: {Email: REmail}
         })
         .catch(err =>  console.log(err))
-        .then( response => flag = response)
-
-        if(flag) alert('User Already Exsist')
+        .then( response => {setFlag(response.data) 
+            console.log(response.data)
+        console.log(flag)
+    
+        if(response.data) alert('User Already Exist')
 
         else 
-        {
-            axios({
-                method : 'post',
-                url : 'http://localhost:5000/api/borrow',
-                data: {Email: REmail, Isbn: 'Isbn000'}
-            })
-            .catch( err => console.log(err))
-            .then( response => console.log(response))
-
-
             axios({
                 method: 'post',
                 url: 'http://localhost:5000/api/signup', 
@@ -71,16 +69,18 @@ function Signup(){
                 .then( response => {
                     alert(response.data)
                     if(response.data === 'User Registered') {
-                        history.push("/books")
+                        history.push("/")
                         localStorage.setItem('Email', REmail)
                     }
 
                     else history.push("/signin")
                     
                 })
+            })
+            
         }
         
-    }
+    
 
     // Login data
     const [LEmail, setLEmail] = useState("")
@@ -101,7 +101,7 @@ function Signup(){
         if(response.data === 'Email Input field cannot be empty' || response.data === 'Password Input field cannot be empty' || response.data === 'User Doesnot exist')
         history.push("/signup")
         else {
-            history.push("/books")
+            history.push("/")
             localStorage.setItem('Email', LEmail)
         }
         console.log(response.config.data)
