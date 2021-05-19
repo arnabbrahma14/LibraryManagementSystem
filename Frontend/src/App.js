@@ -7,6 +7,7 @@ import Admin from './Pages/Admin'
 import Books from './Pages/Books'
 import BooksList from './Pages/BooksList'
 import UsersBooksList from './Pages/UsersBooksList'
+import UsersBooksAdmin from './Pages/UsersBooksAdmin'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path = "/books" exact component = {Books} />
         <Route path = "/booksList" exact component = {BooksList} />
         <Route path = "/UsersBooksList" exact component = {UsersBooksList} />
+        <Route path = "/UsersBooksAdmin" exact component = {UsersBooksAdmin} />
         <Route path = "*" component = {PNF} />
       </Switch>
     </Router>

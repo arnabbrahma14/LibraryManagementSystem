@@ -24,7 +24,7 @@ export default function NavbarComp () {
     var logout = () => {
         setUser('');
     localStorage.clear();
-    history.push("/users")
+    history.push("/")
 
     window.location.reload()
     }
@@ -39,7 +39,7 @@ export default function NavbarComp () {
         .then((response) => {
           console.log(response)
           // setUsersBooks(response.data)
-          history.push("/usersBookslist", response.data)
+          history.push("/usersBooksList", response.data)
         })
     
       }
@@ -65,6 +65,7 @@ export default function NavbarComp () {
                 <Container >
                     <Navbar.Brand  onClick = {() => (history.push("/"))} style = {{fontFamily: font}} href="/">Library Management System</Navbar.Brand>
                     <Nav>
+                        <Nav.Link href="/" style = {{fontFamily: font}}>Home</Nav.Link>
                         <Nav.Link onClick = {() => (history.push("/admin"))} style = {{fontFamily: font}} >Admin</Nav.Link>
                         <Nav.Link onClick = {getDept} style = {{fontFamily: font}} >Books</Nav.Link>
                         <Nav.Link href="/About" style = {{fontFamily: font}}>About</Nav.Link>

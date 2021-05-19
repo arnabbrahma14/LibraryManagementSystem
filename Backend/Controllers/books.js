@@ -10,6 +10,7 @@ exports.booksList = (req, res) => {
         //console.log(result)
 
         for(const ele of result) {
+            if(ele.Count > 0)
             arr.push( {Name : ele.Name, Author : ele.Author, Total : ele.Count , Isbn: ele.Isbn})
         }
        console.log(arr)

@@ -29,8 +29,17 @@ export default function BooksList(props) {
         .catch(err => console.log(err))
         .then( (response) => {
           alert('Book Added')
-          // alert(response.data)
-          // window.location.reload()
+          
+          axios({
+            method: 'post',
+            url: 'http://localhost:5000/api/decreaseCount',
+            data: {Isbn: isbn}
+          })
+          .catch(err => console.log(err))
+          .then( (response) => {
+          console.log(response.data)
+          })
+
           history.push("/")
         })
       }
@@ -38,7 +47,7 @@ export default function BooksList(props) {
     return  <>
     <NavbarComp />
     <div>{props.location.state.map(ele => (
-            
+        
         <li key = {ele.Isbn} style = {{listStyle : 'none'}}> 
         <Container>
           <Row>

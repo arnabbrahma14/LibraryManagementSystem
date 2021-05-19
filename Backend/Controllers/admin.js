@@ -9,13 +9,14 @@ exports.displayUsers = (req, res) => {
 
 exports.displayBooksAdmin = (req, res) => {
     var Email = req.body.Email
-    var sql = 'Select Name, Author, Isbn, Count from books where Isbn in (select distinct Isbn from usersbooks where email = ?)'
+    var sql = 'select Name, Author, Count, books.Isbn, Sdate, Edate from books inner join usersbooks on books.Isbn = usersbooks.Isbn where books.Isbn in (SELECT distinct Isbn from usersbooks where email = ?)'
     var arr = []
+    
     db.query(sql, [Email], (err, result) => {
         if(err) throw err
         
         for(const ele of result) {
-            arr.push( {Name : ele.Name, Author : ele.Author , Isbn: ele.Isbn, Total: ele.Count})
+            arr.push( {Name : ele.Name, Author : ele.Author , Isbn: ele.Isbn, Total:ele.Count, Sdate: ele.Sdate, Edate: ele.Edate})
         }
         console.log(arr)
         return res.send(arr)
@@ -28,3 +29,22 @@ exports.deleteUser = (req, res) => {
         res.send(result)
     })
 }
+
+exports.getEdate = (req, res) => {
+    db.query('Select Edate from usersbooks where Email = ? and Isbn = ?', [req.body.Email, req.body.Isbn], (err, result) => {
+        if(err) throw err
+        return res.send(result)
+    })
+}
+
+exports.reissue = (req, res) => {
+    console.log(`${req.body.Edate} `)
+    db.query('UPDATE usersbooks SET Edate = ?  where Email= ? and Isbn = ?', [req.body.Edate, req.body.Email, req.body.Isbn], (err, result) => {
+        if(err) throw err
+        return res.send(result)
+    })
+}
+
+/*
+ UPDATE `usersbooks` SET Edate = '10/4/2021' where `Email`= 'arnabbrahma14@gmail.com' and Isbn= 'Isbn008' 
+ */

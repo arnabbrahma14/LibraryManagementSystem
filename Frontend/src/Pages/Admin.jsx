@@ -2,9 +2,11 @@ import React, {useState} from 'react'
 import { Button, ButtonGroup, Col, Container, Row, Table } from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
 import NavbarComp from '../Components/NavbarComp'
+import '../App.css'
 const axios = require('axios')
-export default function Users() {
+export default function Admin() {
     var [users, setUsers] = useState([])
+    const font =  {fontFamily: "'Quicksand', sans-serif"};
     var t = 0
     var center = {display: 'grid', alignContents: 'center', justifyContents: 'center'}
     var history = useHistory()
@@ -26,8 +28,8 @@ export default function Users() {
         .catch(err => console.log(err))
         .then((response) => {
           console.log(response)
-          // setUsersBooks(response.data)
-          history.push("/usersBookslist", response.data)
+          
+          history.push("/usersBooksAdmin", {Email: user, Response: response.data})
         })
     
       }
@@ -48,8 +50,8 @@ export default function Users() {
       }
     return <div>
     <NavbarComp />
-    <div style = {center} className = "mt-1">
-    <Button   style = {center} onClick = {displayUsers} variant = "outline-secondary"><h3  >Show Current Users </h3></Button>
+    <div style = {center}className = "mt-1">
+    <Button   style = {center} onClick = {displayUsers} variant = "outline-secondary"><h3  style = {font} >Show Current Users </h3></Button>
     </div>
     <Container>
         <Row className = "mt-3">
@@ -65,11 +67,11 @@ export default function Users() {
                 (
                         <tbody>
                             <tr key = {ele.Email}>
-                                <td>{++t % (users.length+1)}</td>
-                                <td >{ele.Name}</td>
-                                <td>{ele.Email}</td>
-                                <td><Button variant = "outline-info" onClick = {() => {getUsersBooks(ele.Email)}}>Books</Button></td>
-                                <td><Button variant = "outline-danger" onClick = {() => {deleteUser(ele.Email)}}>Delete</Button></td>
+                                <td style = {font} >{++t % (users.length+1)}</td>
+                                <td style = {font} >{ele.Name}</td>
+                                <td style = {font} >{ele.Email}</td>
+                                <td style = {font} ><Button variant = "outline-info" onClick = {() => {getUsersBooks(ele.Email)}}>Books</Button></td>
+                                <td style = {font} ><Button variant = "outline-danger" onClick = {() => {deleteUser(ele.Email)}}>Delete</Button></td>
                             </tr>
                         </tbody>
                     
@@ -81,17 +83,20 @@ export default function Users() {
         </Row>
         
         <Row className = "mt-3">
-            <Col xs = {6} md = {{span: 3, offset: 5}}>
-                <h2>Add New Books / Dept</h2>
+            <Col xs = {6} md = {{span: 6, offset: 3}}>
+                <h2 style = {font} >Add New Books / Dept / Delete Books </h2>
             </Col>
         </Row>
         <Row className = "mt-3">
             <ButtonGroup>
-            <Col xs = {6} style = {center}>
-                        <Button variant = "success">Books</Button>
+            <Col xs = {4} style = {center}>
+                        <Button variant = "success" style = {font} >Books</Button>
             </Col>
-            <Col xs = {6} style = {center}>
-                        <Button variant = "success">Dept</Button>
+            <Col xs = {4} style = {center}>
+                        <Button variant = "success" style = {font} >Dept</Button>
+            </Col>
+            <Col xs = {4} style = {center}>
+                        <Button variant = "success" style = {font} >Delete Books</Button>
             </Col>
             </ButtonGroup>
         </Row>

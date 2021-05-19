@@ -1,39 +1,50 @@
-import React, {useState, useEffect} from 'react' 
+import React from 'react' 
 import {Container, Row, Col} from 'react-bootstrap'
-import CardComp from '../Components/CardComp'
 import NavbarComp from '../Components/NavbarComp'
-import {useHistory} from 'react-router-dom'
-const axios = require('axios')
+// import {useHistory} from 'react-router-dom'
+import CardCompUser from '../Components/CardCompUser'
+// const axios = require('axios')
 
 export default function UsersBooksList(props) {
 
-    var [user, setUser] = useState('')
-    let history = useHistory()
-    // var [books, setbooks] = useState([])
+    // var [user, setUser] = useState('')
+    // let history = useHistory()
+    // // var [books, setbooks] = useState([])
 
-    //Getting the Current User that has logged in
-    useEffect(() => {
-      const loggedInUser = localStorage.getItem('Email');
-      if (loggedInUser) {
-        const foundUser = loggedInUser;
-        setUser(foundUser);
-      }
-    }, []);
+    // //Getting the Current User that has logged in
+    // useEffect(() => {
+    //   const loggedInUser = localStorage.getItem('Email');
+    //   if (loggedInUser) {
+    //     const foundUser = loggedInUser;
+    //     setUser(foundUser);
+    //   }
+    // }, []);
     
-    var deleteBook = (isbn) => {
-        axios({
-          method : 'post',
-          url: 'http://localhost:5000/api/deletebook',
-          data: {Email: user, Isbn: isbn}
-        })
-        .catch(err => console.log(err))
-        .then(response => {
-          alert('Book Removed')
-          console.log(response)
-        //   window.location.reload()
-          history.push("/")
-        })
-      }
+    // var deleteBook = (isbn) => {
+    //     axios({
+    //       method : 'post',
+    //       url: 'http://localhost:5000/api/deletebook',
+    //       data: {Email: user, Isbn: isbn}
+    //     })
+    //     .catch(err => console.log(err))
+    //     .then(response => {
+    //       alert('Book Removed')
+    //       console.log(response)
+
+    //       axios({
+    //         method: 'post',
+    //         url: 'http://localhost:5000/api/increaseCount',
+    //         data: {Isbn: isbn}
+    //       })
+    //       .catch(err => console.log(err))
+    //       .then( (response) => {
+    //       console.log(response.data)
+    //       })
+
+    //     //   window.location.reload()
+    //       history.push("/")
+    //     })
+    //   }
 
     //   var show = () => {
         console.log(props)
@@ -55,7 +66,7 @@ export default function UsersBooksList(props) {
             <Container>
               <Row>
                 <Col md ={6} className = "m-3">
-                  <CardComp Name = {ele.Name} Author = {ele.Author} Total = {ele.Total} Fun = {() => deleteBook(ele.Isbn)} message = {'Delete'}/>
+                  <CardCompUser Name = {ele.Name} Author = {ele.Author} Sdate = {ele.Sdate} Edate = {ele.Edate}/>
                 </Col>
               </Row>
             </Container>
