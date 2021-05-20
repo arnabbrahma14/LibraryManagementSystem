@@ -18,7 +18,7 @@ exports.booksList = (req, res) => {
         if(arr.length > 0)
         return res.send(arr)
 
-        else res.send([{Name : 'No Books Available', Author : 'None', Total : '0'}])
+        else res.send([{Name : 'No Books Available'}])
     })
 
 }

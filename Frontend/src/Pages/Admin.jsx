@@ -90,13 +90,13 @@ export default function Admin() {
         <Row className = "mt-3">
             <ButtonGroup>
             <Col xs = {4} style = {center}>
-                        <Button variant = "success" style = {font} >Books</Button>
+                        <Button variant = "success" style = {font} onClick = {() => {history.push("/AdminBooks")}} >Books</Button>
             </Col>
             <Col xs = {4} style = {center}>
                         <Button variant = "success" style = {font} >Dept</Button>
             </Col>
             <Col xs = {4} style = {center}>
-                        <Button variant = "success" style = {font} >Delete Books</Button>
+                        <Button variant = "success" style = {font} onClick = {() => {history.push("/AdminBooks")}} >Delete Books</Button>
             </Col>
             </ButtonGroup>
         </Row>

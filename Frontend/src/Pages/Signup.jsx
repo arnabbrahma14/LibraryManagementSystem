@@ -69,11 +69,11 @@ function Signup(){
                 .then( response => {
                     alert(response.data)
                     if(response.data === 'User Registered') {
-                        history.push("/")
+                        history.push("/contact")
                         localStorage.setItem('Email', REmail)
                     }
 
-                    else history.push("/signin")
+                    else history.push("/signup")
                     
                 })
             })
@@ -101,7 +101,7 @@ function Signup(){
         if(response.data === 'Email Input field cannot be empty' || response.data === 'Password Input field cannot be empty' || response.data === 'User Doesnot exist')
         history.push("/signup")
         else {
-            history.push("/")
+            history.push("/about")
             localStorage.setItem('Email', LEmail)
         }
         console.log(response.config.data)

@@ -9,7 +9,7 @@ exports.displayUsers = (req, res) => {
 
 exports.displayBooksAdmin = (req, res) => {
     var Email = req.body.Email
-    var sql = 'select Name, Author, Count, books.Isbn, Sdate, Edate from books inner join usersbooks on books.Isbn = usersbooks.Isbn where books.Isbn in (SELECT distinct Isbn from usersbooks where email = ?)'
+    var sql = 'select Name, Author, books.Isbn, Count, Sdate, Edate from books inner join usersbooks on books.Isbn = usersbooks.Isbn where email = ? and books.Isbn in (SELECT distinct Isbn from usersbooks)'
     var arr = []
     
     db.query(sql, [Email], (err, result) => {

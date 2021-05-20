@@ -8,10 +8,10 @@ export default function CardCompAdmin(props) {
               <Card.Header style = {font}>Book Name: {props.Name}</Card.Header>
               <Card.Body>
                   <Card.Title style = {font}>Author: {props.Author}</Card.Title>
-                  <Card.Text style = {font}>No. of Books Left: {props.Total}</Card.Text>
+                  {/* <Card.Text style = {font}>No. of Books Left: {props.Total}</Card.Text> */}
                   <Card.Text style = {font}>Book Taken on: {props.Sdate}</Card.Text>
                   <Card.Text style = {font}>Book to be Returned: {props.Edate}</Card.Text>
-                  <Card.Text style = {font}>Late Fees: {props.Fine}</Card.Text>
+                  <Card.Text style = {font}>No. of Days Late: {props.Fine}</Card.Text>
                   <Button onClick = {props.del} style = {font}>Return </Button>&nbsp;
                   <Button onClick = {props.reissue} style = {font}>Re-issue</Button>
               </Card.Body>

@@ -1,9 +1,19 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import {Navbar, Nav, Button, Container} from '../../node_modules/react-bootstrap'
+import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faBars } from "@fortawesome/free-solid-svg-icons";
+import {Nav, Button, Container} from '../../node_modules/react-bootstrap'
 import React, {useState, useEffect} from 'react'
 import '../App.css'
 import {useHistory} from 'react-router-dom'
 const axios = require('axios')
+
+
+// .navbar-nav > li > a.active, .navbar-nav > li > a.active:focus{
+//   border-top: 0.1875rem solid var(#f9ab00);
+
+// }
+
+
 
 
 export default function NavbarComp () {
@@ -61,29 +71,48 @@ export default function NavbarComp () {
     
     return (
             <>
-            <Navbar bg="dark" variant="dark">
+			<nav className="navbar navbar-expand-lg navbar-light bg-dark">
                 <Container >
-                    <Navbar.Brand  onClick = {() => (history.push("/"))} style = {{fontFamily: font}} href="/">Library Management System</Navbar.Brand>
-                    <Nav>
-                        <Nav.Link href="/" style = {{fontFamily: font}}>Home</Nav.Link>
-                        <Nav.Link onClick = {() => (history.push("/admin"))} style = {{fontFamily: font}} >Admin</Nav.Link>
-                        <Nav.Link onClick = {getDept} style = {{fontFamily: font}} >Books</Nav.Link>
-                        <Nav.Link href="/About" style = {{fontFamily: font}}>About</Nav.Link>
-                        <Nav.Link href="/Contact" style = {{fontFamily: font}}>Contact</Nav.Link>
+                    <Nav.Link onClick = {() => (history.push("/"))} className="mr-3" style = {{textDecoration: "None"}} href= "/" >
+						<h4  style = {{fontFamily: font, color: "white"}}>Library Management System</h4>
+					</Nav.Link>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    		<FontAwesomeIcon icon={faBars} style={{color:"#fff"}}/>
+                    </button>
+						<div className="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul className="navbar-nav ml-auto">
+								
+									<li className="nav-item active">
+										<Nav.Link className="nav-links" onClick = {() => (history.push("/"))} style = {{fontFamily: font}} href= "/">Home</Nav.Link>
+									</li>
+									<li className="nav-item">
+										<Nav.Link className="nav-link" onClick = {() => (history.push("/admin"))} style = {{fontFamily: font}} >Admin</Nav.Link>
+									</li>
+									<li className="nav-item">
+										<Nav.Link className="nav-link" onClick = {getDept} style = {{fontFamily: font}} >Books</Nav.Link>
+									</li>
+									<li className="nav-item">
+										<Nav.Link className="nav-link" href="/About" style = {{fontFamily: font}}>About</Nav.Link>
+									</li>
+									<li className="nav-item">
+										<Nav.Link className="nav-link" href="/Contact" style = {{fontFamily: font}}>Contact</Nav.Link>
+									</li>
+									<li className="nav-item">
 
-                        </Nav>
-                        <Nav style = {{float : 'right'}}>
-                        
-                        
-                        <Button  variant="outline-info" onClick = {() => (history.push("/signup"))} style = {{fontFamily: font, marginRight : '4px'}}>SignUp | SignIn</Button>
-                        
-                        <Button variant = "primary" onClick = {logout} style = {{fontFamily: font, marginRight : '4px'}}>Logout</Button>
-                        {/* <Button variant = "primary" onClick = {getUsersBooks} style = {{fontFamily: font, marginRight : '4px'}}>Your Books</Button> */}
-                        
-                        <Nav.Link  onClick = {getUsersBooks} style = {{fontFamily: font, color : 'white'}}>{user}</Nav.Link>
-                    </Nav>
-                    </Container>
-            </Navbar>    
+										<Button  variant="outline-info" onClick = {() => (history.push("/signup"))} style = {{fontFamily: font, marginRight : '4px'}}>SignUp | SignIn</Button>
+									</li>
+									<li className="nav-item">
+
+										<Button variant = "primary" onClick = {logout} style = {{fontFamily: font, marginRight : '4px'}}>Logout</Button>
+									</li>
+									<li className="nav-item">
+									<Nav.Link  onClick = {getUsersBooks} style = {{fontFamily: font, color : 'white'}}>{user}</Nav.Link>
+									</li>
+								
+							</ul>                      
+						</div>
+                </Container>
+			</nav>    
         </>   
     )
 }
